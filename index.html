@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sertifika Oluşturucu</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background: #f4f4f4;
+    }
+
+    #container {
+      max-width: 800px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    input, button {
+      margin: 10px 0;
+      padding: 10px;
+      font-size: 16px;
+    }
+
+    #preview {
+      margin-top: 20px;
+      border: 1px solid #ccc;
+      width: 100%;
+      text-align: center;
+    }
+
+    canvas {
+      max-width: 100%;
+      height: auto;
+    }
+  </style>
+</head>
+<body>
+  <div id="container">
+    <h2>Sertifika Oluştur</h2>
+    <label for="nameInput">Adınız:</label><br />
+    <input type="text" id="nameInput" placeholder="Adınızı girin..." /><br />
+
+    <button onclick="generateCertificate()">Sertifika Oluştur</button>
+    <button onclick="downloadCertificate()">İndir</button>
+
+    <div id="preview">
+      <canvas id="certificateCanvas"></canvas>
+    </div>
+  </div>
+
+  <script>
+    const CERTIFICATE_BG_URL = "https://i.hizliresim.com/s4iziaq.jpg"; // 🎯 BU KISMI DEĞİŞTİR
+
+    let canvas = document.getElementById("certificateCanvas");
+    let ctx = canvas.getContext("2d");
+
+    function generateCertificate() {
+      const name = document.getElementById("nameInput").value;
+
+      if (!name) {
+        alert("Lütfen adınızı giriniz.");
+        return;
+      }
+
+      const image = new Image();
+      image.crossOrigin = "anonymous"; // CORS izinli olmalı
+      image.onload = function () {
+        canvas.width = image.width;
+        canvas.height = image.height;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.drawImage(image, 0, 0);
+
+        // Adı yerleştirme
+        ctx.font = "40px Arial";
+        ctx.fillStyle = "#000";
+        ctx.textAlign = "center";
+        ctx.fillText(name, canvas.width / 2, canvas.height * 0.50);
+      };
+      image.src = CERTIFICATE_BG_URL;
+    }
+
+    function downloadCertificate() {
+      const link = document.createElement("a");
+      link.download = "sertifika.png";
+      link.href = canvas.toDataURL("image/png");
+      link.click();
+    }
+  </script>
+</body>
+</html>
