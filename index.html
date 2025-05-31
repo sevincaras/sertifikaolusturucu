@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Sertifika Oluşturucu</title>
+  <title>CREATE METACITIZEN PROJECT CERTIFICATE</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -41,12 +41,12 @@
 </head>
 <body>
   <div id="container">
-    <h2>Sertifika Oluştur</h2>
-    <label for="nameInput">Adınız:</label><br />
-    <input type="text" id="nameInput" placeholder="Adınızı girin..." /><br />
+    <h2>CREATE METACITIZEN PROJECT CERTIFICATE</h2>
+    <label for="nameInput">Name:</label><br />
+    <input type="text" id="nameInput" placeholder="please enter your name" /><br />
 
-    <button onclick="generateCertificate()">Sertifika Oluştur</button>
-    <button onclick="downloadCertificate()">İndir</button>
+    <button onclick="generateCertificate()">Create</button>
+    <button onclick="downloadCertificate()">Download</button>
 
     <div id="preview">
       <canvas id="certificateCanvas"></canvas>
@@ -54,7 +54,7 @@
   </div>
 
   <script>
-    const CERTIFICATE_BG_URL = "https://i.hizliresim.com/75bbrg4.jpeg"; // 🎯 BU KISMI DEĞİŞTİR
+    const CERTIFICATE_BG_URL = "https://i.hizliresim.com/gb1c8ed.jpeg"; // 🎯 BU KISMI DEĞİŞTİR
 
     let canvas = document.getElementById("certificateCanvas");
     let ctx = canvas.getContext("2d");
@@ -76,7 +76,7 @@
         ctx.drawImage(image, 0, 0);
 
         // Adı yerleştirme
-        ctx.font = "100px Arial";
+        ctx.font = "200px Arial";
         ctx.fillStyle = "#000";
         ctx.textAlign = "center";0
         ctx.fillText(name, canvas.width / 2, canvas.height * 0.48);
